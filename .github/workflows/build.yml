@@ -67,3 +67,31 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: mbedtls.linux.${{ github.ref_name }}.tar.gz
+  macOS:
+    permissions:
+      contents: write
+    runs-on: macos-14
+    steps:
+      - name: Checkout mbedtls
+        uses: actions/checkout@v4
+        with:
+          repository: Mbed-TLS/mbedtls
+          ref: v3.2.1
+          path: mbedtls
+      - name: Build
+        run: |
+          cd mbedtls
+          mkdir build
+          cd build
+          cmake .. -B Release -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=OFF -DENABLE_PROGRAMS=OFF -DDISABLE_PACKAGE_CONFIG_AND_INSTALL=OFF -DUSE_SHARED_MBEDTLS_LIBRARY=ON
+          cmake --build Release
+          cmake --install Release/ --prefix install/Release
+      - name: Generate tar
+        run: |
+          echo ${{ github.sha }} > Release.txt
+          cp Release.txt ./mbedtls/build/install/Release
+          tar -czvf mbedtls.macos.${{ github.ref_name }}.tar.gz -C ./mbedtls/build/install/Release .
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: mbedtls.macos.${{ github.ref_name }}.tar.gz
