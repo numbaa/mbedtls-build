@@ -90,8 +90,8 @@ jobs:
         run: |
           echo ${{ github.sha }} > Release.txt
           cp Release.txt ./mbedtls/build/install/Release
-          tar -czvf mbedtls.macos.${{ github.ref_name }}.tar.gz -C ./mbedtls/build/install/Release .
+          tar -czvf mbedtls.mac.${{ github.ref_name }}.tar.gz -C ./mbedtls/build/install/Release .
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: mbedtls.macos.${{ github.ref_name }}.tar.gz
+          files: mbedtls.mac.${{ github.ref_name }}.tar.gz
