@@ -55,7 +55,7 @@ jobs:
           cd mbedtls
           mkdir build
           cd build
-          cmake .. -B Release -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=OFF -DENABLE_PROGRAMS=OFF -DDISABLE_PACKAGE_CONFIG_AND_INSTALL=OFF -DUSE_SHARED_MBEDTLS_LIBRARY=ON
+          cmake .. -B Release -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=OFF -DENABLE_PROGRAMS=OFF -DDISABLE_PACKAGE_CONFIG_AND_INSTALL=OFF
           cmake --build Release
           cmake --install Release/ --prefix install/Release
       - name: Generate tar
@@ -83,7 +83,7 @@ jobs:
           cd mbedtls
           mkdir build
           cd build
-          cmake .. -B Release -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=OFF -DENABLE_PROGRAMS=OFF -DDISABLE_PACKAGE_CONFIG_AND_INSTALL=OFF -DUSE_SHARED_MBEDTLS_LIBRARY=ON
+          cmake .. -B Release -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=OFF -DENABLE_PROGRAMS=OFF -DDISABLE_PACKAGE_CONFIG_AND_INSTALL=OFF
           cmake --build Release
           cmake --install Release/ --prefix install/Release
       - name: Generate tar
